@@ -1,0 +1,20 @@
+<div *ngFor="let comment of comments; let i = index">
+    <span>
+        {{ comment.author }} :
+    </span>
+    <span>
+        {{ comment.comment}}
+    </span>
+    <span>&nbsp;&nbsp;( {{ comment.likes }} likes)</span>
+    <span class="reply" (click)="showCommentOption(i)" *ngIf="!comment.showReply"><a>reply</a></span>
+    <span class="reply" (click)="addLikes(i)"><a>like</a>&nbsp;</span>
+    <span class="reply" (click)="deleteComment(i)" *ngIf="enableDelete"><a>delete</a>&nbsp;</span>
+    <div *ngIf="comment.showReply">
+        <input type="text" [(ngModel)]="userComment" placeholder="comment">
+        <input type="text" [(ngModel)]="author" placeholder="author">
+        <span class="reply" (click)="addComment(i)"><a>reply</a></span>
+    </div>
+    <div class="sub-comment"  *ngIf="comment.comments && comment.comments.length>0">
+        <app-comments (updatedComment)="updateComment($event,i)" [comments]="comment.comments" [index]="i" [user]="user"></app-comments>
+    </div>
+</div>

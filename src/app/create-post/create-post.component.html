@@ -1,0 +1,20 @@
+<div class="main-div">
+    <div style="margin-top: 10px;">
+        <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/home" type="submit">Home</button>
+    </div>
+    <div class="blog-form">
+        <div class="form-group">
+            <input type="text" class="form-control rounded-left" [(ngModel)]="title" placeholder="Blog title">
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" aria-label="With textarea" [(ngModel)]="post"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="file">Choose File</label>
+            <input type="file" id="file" (change)="uploadImage($event)">
+        </div>
+    </div>
+    <div style="margin-top: 10px;">
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="submitPost()" type="submit">Post</button>
+    </div>
+</div>

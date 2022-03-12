@@ -1,0 +1,23 @@
+.main-div {
+    margin-top: 20px;
+}
+.image-width {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.comments {
+    text-align: left;
+}
+.card-class {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+.reply {
+    float: right;
+}
+a {
+    color: #0d6efd !important;
+    text-decoration: underline !important;
+}

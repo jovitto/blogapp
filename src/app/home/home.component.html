@@ -1,0 +1,37 @@
+<nav class="navbar navbar-light bg-light">
+    <a></a>
+    <a routerLink="/addPost" *ngIf="loggedInUser">Create Post</a>
+    <form class="form-inline">
+        <button class="btn btn-outline-success my-2 my-sm-0" *ngIf="!loggedInUser" routerLink="/login"
+            type="submit">Login</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" *ngIf="loggedInUser" (click)="logout()"
+            type="submit">Logout</button>
+    </form>
+</nav>
+<div class="main-div">
+    <div class="card card-class" style="width: 60%; text-align: center;" *ngFor="let blog of blogs; let i = index">
+        <img class="card-img-top image-width center" [src]="setImage(blog.image)" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ blog.title }}</h5>
+            <p class="card-text">
+                {{ blog.blog }}
+            </p>
+            <p class="card-text">{{ blog.likes }} likes</p>
+            <span class="reply" (click)="deletePost(i)" *ngIf="blog.author == user">&nbsp;<a>delete</a></span>
+            <span class="reply" (click)="addLikes(i)">&nbsp;&nbsp;<a>like</a>&nbsp;</span>
+            <span class="reply" (click)="showCommentOption(i)" *ngIf="!blog.showReply"><a>reply</a></span>
+            <div class="comments">
+                <p>Comments</p>
+                <div>
+                    <div *ngIf="blog.showReply">
+                        <input type="text" [(ngModel)]="userComment" placeholder="comment">
+                        <input type="text" [(ngModel)]="author" placeholder="author">
+                        <span class="reply" (click)="addComment(i)"><a>reply</a></span>
+                    </div>
+                </div>
+                <app-comments (updatedComment)="updateComment($event,i)" [comments]="blog.comments" [index]="i" [user]="blog.author">
+                </app-comments>
+            </div>
+        </div>
+    </div>
+</div>
